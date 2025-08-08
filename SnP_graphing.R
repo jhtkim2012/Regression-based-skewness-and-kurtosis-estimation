@@ -8,7 +8,7 @@ library(scales)
 # 데이터 불러오기
 #df_100 <- read_csv("C:\\Data\\skew_kurt_result_100.csv")
 df_100 <- read_csv("skew_kurt_result_100.csv")
-df_100$Quantile3_kurt <- df_100$Quantile3_kurt +2.91
+
 
 ### 왜도
 # 1. 데이터 형식 변환 및 skew 데이터만 추출
