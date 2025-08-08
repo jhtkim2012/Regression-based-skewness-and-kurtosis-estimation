@@ -1,16 +1,16 @@
-# 필요한 패키지 로드
+# upload packages
 library(readr)
 library(dplyr)
 library(tidyr)
 library(ggplot2)
 library(scales)
 
-# 데이터 불러오기
+# read data
 #df_100 <- read_csv("C:\\Data\\skew_kurt_result_100.csv")
 df_100 <- read_csv("skew_kurt_result_100.csv")
 
 
-### 왜도
+### skewnss
 # 1. 데이터 형식 변환 및 skew 데이터만 추출
 skew_data <- df_100 %>%
   select(Date, contains("skew")) %>%
@@ -71,8 +71,8 @@ ggplot(skew_data, aes(x = Date, y = Skewness, color = Method, linetype = Method)
 
 
 
-### 첨도
-# 1. 데이터 형식 변환 및 kurt 데이터만 추출
+### surtosis
+# 1. extract kurtosis
 kurt_data <- df_100 %>%
   select(Date, contains("kurt")) %>%
   pivot_longer(-Date, names_to = "Method", values_to = "Kurtosis") %>%
@@ -90,7 +90,7 @@ kurt_data <- df_100 %>%
   ) %>%
   filter(Method %in% c("Empirical", "New", "Lmom", "Moors", "Crow", "KDE"))
 
-# Method 순서 고정
+# Method order fixed
 kurt_data$Method <- factor(kurt_data$Method, levels = c("Empirical", "New", "Lmom", "Moors", "Crow", "KDE"))
 
 color_mapping <- c(
