@@ -724,7 +724,7 @@ sink()
 
 library(dplyr)
 
-# Skewness에 대한 Method 변경
+# Skewness Method name change
 all_results <- all_results %>%
   mutate(Method = case_when(
     moments == "Skewness" & Method == "New5_smallresid" ~ "New",
@@ -736,7 +736,7 @@ all_results <- all_results %>%
     TRUE ~ Method
   ))
 
-# Kurtosis에 대한 Method 변경
+# Kurtosis Method  name change
 all_results <- all_results %>%
   mutate(Method = case_when(
     moments == "Kurtosis" & Method == "New5_smallresid" ~ "New",
@@ -747,7 +747,7 @@ all_results <- all_results %>%
     TRUE ~ Method
   ))
 
-# 혼합 결과에도 동일하게 적용
+#  name change for two-point mixture distns
 all_mix_results <- all_mix_results %>%
   mutate(Method = case_when(
     moments == "Skewness" & Method == "New5_smallresid" ~ "New",
@@ -766,3 +766,4 @@ all_mix_results <- all_mix_results %>%
 
 write_csv(all_results, "all_results.csv")
 write_csv(all_mix_results, "all_mix_results.csv")
+
